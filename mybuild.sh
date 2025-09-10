@@ -1,6 +1,5 @@
 #!/bin/bash
 
-export PATH="/home/rourou/openlist/go/bin":$PATH
 appName="openlist"
 builtAt="$(date +'%F %T %z')"
 goVersion=$(go version | sed 's/go version //')
