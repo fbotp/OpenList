@@ -247,6 +247,9 @@ func (h *Handler) handleGetHeadPost(w http.ResponseWriter, r *http.Request) (sta
 		if err != nil {
 			return http.StatusInternalServerError, err
 		}
+                if strings.Contains(link.URL, "baidupcs.com") {
+			link.URL = "https://api.rbbyq.cn/proxy/?path=" + url.QueryEscape(link.URL)
+		}
 		defer link.Close()
 		http.Redirect(w, r, link.URL, http.StatusFound)
 		return 0, nil

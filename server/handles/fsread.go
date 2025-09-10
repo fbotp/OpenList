@@ -2,6 +2,7 @@ package handles
 
 import (
 	"fmt"
+	"net/url"
 	stdpath "path"
 	"strings"
 	"time"
@@ -341,6 +342,9 @@ func FsGet(c *gin.Context, req *FsGetReq, user *model.User) {
 				rawURL = link.URL
 			}
 		}
+	}
+	if strings.Contains(rawURL, "baidupcs.com") {
+		rawURL = "https://api.rbbyq.cn/proxy/?path=" + url.QueryEscape(rawURL)
 	}
 	var related []model.Obj
 	parentPath := stdpath.Dir(reqPath)
