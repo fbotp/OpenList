@@ -19,9 +19,6 @@ jobs:
         with:
           go-version: '1.25.1' # 请根据您的项目要求调整版本
 
-      - name: Clean directory for frontend dist
-        run: rm -r public/dist
-
       - name: Download and extract external Vite dist
         run: |
           wget https://github.com/OpenListTeam/OpenList-Frontend/releases/download/v4.1.2/openlist-frontend-dist-lite-v4.1.2.tar.gz -O temp.tar.gz
