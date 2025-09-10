@@ -13,8 +13,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y gcc-aarch64-linux-gnu
-
+          sudo apt-get install -y gcc-aarch64-linux-gnu g++-aarch64-linux-gnu libsqlite3-dev:arm64
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -36,6 +35,8 @@ jobs:
       - name: Run custom build script for ARM64
         run: |
           # 设置环境变量供您的脚本使用，然后执行脚本
+          export CC=aarch64-linux-gnu-gcc
+          export CXX=aarch64-linux-gnu-g++
           export GOOS=linux
           export GOARCH=arm64
           export CGO_ENABLED=1
