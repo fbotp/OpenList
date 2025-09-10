@@ -10,6 +10,11 @@ jobs:
       - name: Checkout repository code
         uses: actions/checkout@v4
 
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libsqlite3-dev gcc
+
       - name: Set up Go
         uses: actions/setup-go@v4
         with:
@@ -33,6 +38,7 @@ jobs:
           # 设置环境变量供您的脚本使用，然后执行脚本
           export GOOS=linux
           export GOARCH=arm64
+          export CGO_ENABLED=1
           ./mybuild.sh
 
       - name: Upload build artifacts
